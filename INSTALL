@@ -1,0 +1,7 @@
+1.Install git,gcc,vim in your distro 
+2.Get required libraries with git "git clone git://git.drogon.net/wiringPi"
+3.Change directory into wiringPi "cd wiringPi"
+4.Run library build "./build"
+5.Change directory into project directory "cd ~/reading_status"
+6.Run project build "./build"
+7.Run binary file with ampersand to work in backgroud "./reading_status_gpio &"
