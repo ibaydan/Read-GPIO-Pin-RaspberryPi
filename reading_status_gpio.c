@@ -64,7 +64,9 @@ for (;;){
  		*/
 		if(digitalRead(pinList[i])==1 && pinPreviousState[pinList[i]]!=1){
 			pinPreviousState[pinList[i]]=1;
-			system("(date +%HH%M) >> /home/pin4_press.txt");
+			char command[50];
+			sprintf(command,"(date +%HH%M) >> /root/reading_status_gpio/pin%d_press.txt",pinList[i]);
+			system(command);
 		}
 		/*
 		 * IF NOT PRESSED 
@@ -77,7 +79,9 @@ for (;;){
 		 */
 		if(digitalRead(pinList[i])==0){
 			pinPreviousState[pinList[i]]=0;
-			system("(date +%HH%M) >> /home/pin4_release.txt");
+			char command[50];
+			sprintf(command,"(date +%HH%M) >> /root/reading_status_gpio/pin%d_release.txt",pinList[i]);
+			system(command);
 		}
 		delay(50);
 	}
