@@ -65,7 +65,23 @@ for (;;){
 		if(digitalRead(pinList[i])==1 && pinPreviousState[pinList[i]]!=1){
 			pinPreviousState[pinList[i]]=1;
 			char command[50];
-			sprintf(command,"(date +%HH%M) >> /root/reading_status_gpio/pin%d_press.txt",pinList[i]);
+
+			/*
+			 * Look for which pin pressed	
+			 */
+			switch(pinList[i]){
+			/*
+			 * Pin 7 pressed
+			 */
+			case 7:	sprintf(command,"(date +%HH%M) >> /root/reading_status_gpio/pin%d_pressed.txt",pinList[i]);
+				break;
+			/*
+			 * Pin 11 pressed
+			 */
+			case 11:sprintf(command,"(date +%HH%M) >> /root/reading_status_gpio/pin%d_pressed.txt",pinList[i]);
+				break;
+			}
+
 			system(command);
 		}
 		/*
@@ -80,9 +96,27 @@ for (;;){
 		if(digitalRead(pinList[i])==0){
 			pinPreviousState[pinList[i]]=0;
 			char command[50];
-			sprintf(command,"(date +%HH%M) >> /root/reading_status_gpio/pin%d_release.txt",pinList[i]);
+
+			/*
+			 * Look for which pin is relased
+			 */
+			switch(pinList[i]){
+				/*
+				 * Pin 7 relased
+				 */
+				case 7:	sprintf(command,"(date +%HH%M) >> /root/reading_status_gpio/pin%d_release.txt",pinList[i]);
+					break;
+				/*
+				 * Pin 11 relased
+				 */
+				case 11:sprintf(command,"(date +%HH%M) >> /root/reading_status_gpio/pin%d_release.txt",pinList[i]);
+					break;
+			}
 			system(command);
 		}
+		/*
+		 * Wait for specified time
+		 */
 		delay(50);
 	}
 }
